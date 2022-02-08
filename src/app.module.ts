@@ -7,6 +7,7 @@ import databaseConfig from './config/database.config';
 import jwtConfig from './config/jwt.config';
 import serverConfig from './config/server.config';
 import { TypeOrmConfig } from './config/typeorm.config';
+import { TasksModule } from './tasks/tasks.module';
 
 @Module({
   imports: [
@@ -18,7 +19,8 @@ import { TypeOrmConfig } from './config/typeorm.config';
       imports: [ConfigModule],
       useClass: TypeOrmConfig
     }),
-    AuthModule
+    AuthModule,
+    TasksModule
   ],
   providers: [
     {

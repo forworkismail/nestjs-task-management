@@ -1,5 +1,6 @@
 import { hash } from 'bcrypt';
 import { BaseEntity, Column, Entity, OneToMany, PrimaryGeneratedColumn, Unique } from 'typeorm';
+import { Task } from '../../tasks/entities/task.entity';
 
 @Entity()
 @Unique(['username'])
@@ -15,6 +16,9 @@ export class User extends BaseEntity {
 
   @Column()
   salt: string;
+
+  @OneToMany(() => Task, (task) => task.createdBy, { eager: true })
+  tasks: Task[];
 
   @Column({ type: 'timestamptz' })
   createdAt: Date;
